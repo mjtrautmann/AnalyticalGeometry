@@ -28,10 +28,10 @@
 //	
 
 
-#include "AnalyticalGeometry.h"
+#ifndef GEOMETRY_LINE_HPP
+#define GEOMETRY_LINE_HPP
 
-#ifndef GEOMETRY_LINE_CPP
-#define GEOMETRY_LINE_CPP
+#include "Line.h"
 
 namespace analyticalgeom
 {
@@ -42,6 +42,15 @@ namespace analyticalgeom
 	{
 		_spawn = a;
 		_direction = (b-a) / (b-a).length();
+	}
+
+	std::string Line::print() const
+	{
+		std::stringstream stream;
+		stream << '(' << _spawn.x() << ',' << _spawn.y() << ',' << _spawn.y() << ')';
+		stream << "+t";
+		stream << '(' << _direction.x() << ',' << _direction.y() << ',' << _direction.y() << ')';
+		return stream.str();
 	}
 
 	inline void Line::setPoints(const Coordinate& a, const Coordinate& b)

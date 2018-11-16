@@ -42,6 +42,8 @@ namespace analyticalgeom
 		
 			Line();
 			Line(const Coordinate& a, const Coordinate& b);
+
+			std::string print() const;
 		
 			const Coordinate& spawn() const			{return _spawn;}
 			const Coordinate& direction() const		{return _direction;}
@@ -54,7 +56,13 @@ namespace analyticalgeom
 		
 			Coordinate _spawn, _direction;
 	};
-	
+
+
+	std::ostream& operator<< (std::ostream& stream, const analyticalgeom::Line& l)
+	{
+		stream << l.print();
+		return stream;
+	}
 	
 }
 

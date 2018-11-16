@@ -38,6 +38,7 @@
 #include <iostream>
 #include <stdlib.h>
 #include <algorithm>
+#include <sstream>
 
 #include "Coordinate.h"
 #include "Line.h"
@@ -54,6 +55,7 @@ namespace analyticalgeom
 			static double angleDeg(const Coordinate& a, const Coordinate& b);
 
 			static Coordinate projection(const Line& a, const Coordinate& b);
+			static Coordinate projection(const Plane& a, const Coordinate& b);
 
 			static double distance(const Coordinate& a, const Coordinate& b);
 			static double distance(const Line& a, const Coordinate& b);

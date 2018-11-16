@@ -44,6 +44,8 @@ namespace analyticalgeom
 			Plane();
 			Plane(const Coordinate& a, const Coordinate& b, const Coordinate& c);
 			Plane(const Coordinate& x, const Coordinate& n);
+
+			std::string print() const;
 		
 			const Coordinate& n() const			{return _n;}
 			const double& d() const				{return _d;}
@@ -56,6 +58,12 @@ namespace analyticalgeom
 			double _d;
 	};
 
+
+	std::ostream& operator<< (std::ostream& stream, const analyticalgeom::Plane& p)
+	{
+		stream << p.print();
+		return stream;
+	}
 }
 
 

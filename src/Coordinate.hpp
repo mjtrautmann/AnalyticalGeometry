@@ -28,16 +28,24 @@
 //	
 
 
-#include "AnalyticalGeometry.h"
 
-#ifndef GEOMETRY_COORDINATE_CPP
-#define GEOMETRY_COORDINATE_CPP
+#ifndef GEOMETRY_COORDINATE_HPP
+#define GEOMETRY_COORDINATE_HPP
+
+#include "Coordinate.h"
 
 namespace analyticalgeom
 {
 
-	//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-	// Setter
+	std::string Coordinate::print() const
+	{
+		std::stringstream stream;
+		stream << '(' << _x << ',' << _y << ',' << _z << ')';
+		return stream.str();
+	}
+
+
+
 	inline void Coordinate::setCoord(const double & x, const double & y, const double & z)
 	{
 		_x = x;

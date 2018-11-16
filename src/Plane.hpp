@@ -27,10 +27,10 @@
 //	SOFTWARE.
 //	
 
-#include "Plane.h"
+#ifndef GEOMETRY_PLANE_HPP
+#define GEOMETRY_PLANE_HPP
 
-#ifndef GEOMETRY_PLANE_CPP
-#define GEOMETRY_PLANE_CPP
+#include "Plane.h"
 
 namespace analyticalgeom
 {
@@ -57,6 +57,14 @@ namespace analyticalgeom
 	){
 		_n = n/n.length();
 		_d = _n*x;
+	}
+
+
+	std::string Plane::print() const
+	{
+		std::stringstream stream;
+		stream << "(x*(" << _n.x() << ',' << _n.y() << ',' << _n.z() << ')' << '=' << _d;
+		return stream.str();
 	}
 
 }

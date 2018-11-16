@@ -27,10 +27,10 @@
 //	SOFTWARE.
 //	
 
-#include "Geometry.h"
-
 #ifndef GEOMETRY_COORDINATE_H
 #define GEOMETRY_COORDINATE_H
+
+#include "AnalyticalGeometry.h"
 
 
 namespace analyticalgeom
@@ -42,6 +42,8 @@ namespace analyticalgeom
 		
 			Coordinate() :_x(0.), _y(0.), _z(0.) {};
 			Coordinate(const double & x, const double & y, const double & z) : _x(x), _y(y), _z(z) {};
+
+			std::string print() const;
 			
 			
 			const auto & x() const								{return _x;}
@@ -94,6 +96,11 @@ namespace analyticalgeom
 			double _z;
 	};
 
+	std::ostream& operator<< (std::ostream& stream, const analyticalgeom::Coordinate& c)
+	{
+		stream << c.print();
+		return stream;
+	}
 }
 
 #include "Coordinate.hpp"

@@ -28,8 +28,8 @@
 //	
 
 
-#ifndef ALGEBRA_CPP
-#define ALGEBRA_CPP
+#ifndef ALGEBRA_HCPP
+#define ALGEBRA_HCPP
 
 #include "AnalyticalGeometry.h"
 #include <cmath>
@@ -71,6 +71,15 @@ namespace analyticalgeom
 	)
 	{
 		return AnalyticalGeometry::cut(Plane(b, a.direction()), a);
+	}
+
+	inline Coordinate AnalyticalGeometry::projection
+	(
+		const Plane& a,
+		const Coordinate& b
+	)
+	{
+		return AnalyticalGeometry::cut(a, Line(b, b+a.n()));
 	}
 
 
