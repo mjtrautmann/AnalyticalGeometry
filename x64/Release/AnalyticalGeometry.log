@@ -1,0 +1,4 @@
+﻿  distances.cpp
+c:\users\marcus\source\repos\analyticalgeometry\src\coordinate.hpp(59): error C2065: 'PI': undeclared identifier
+c:\users\marcus\source\repos\analyticalgeometry\src\coordinate.hpp(71): error C2065: 'PI': undeclared identifier
+c:\users\marcus\source\repos\analyticalgeometry\src\coordinate.hpp(83): error C2065: 'PI': undeclared identifier
