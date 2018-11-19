@@ -56,7 +56,7 @@ namespace analyticalgeom
 	inline Coordinate Coordinate::rotateX(double alpha) const
 	{
 		Coordinate c;
-		double alpharad = alpha * PI / 180.;
+		double alpharad = alpha * analyticalgeom::pi() / 180.;
 		
 		c._x = _x;
 		c._y = cos(alpharad) * _y - sin(alpharad) * _z;
@@ -68,7 +68,7 @@ namespace analyticalgeom
 	inline Coordinate Coordinate::rotateY(double alpha) const
 	{
 		Coordinate c;
-		double alpharad = alpha * PI / 180.;
+		double alpharad = alpha * analyticalgeom::pi() / 180.;
 		
 		c._x = cos(alpharad) * _x + sin(alpharad) * _z;
 		c._y = _y;
@@ -80,7 +80,7 @@ namespace analyticalgeom
 	inline Coordinate Coordinate::rotateZ(double alpha) const
 	{
 		Coordinate c;
-		double alpharad = alpha * PI / 180.;
+		double alpharad = alpha * analyticalgeom::pi() / 180.;
 		
 		c._x = cos(alpharad) * _x - sin(alpharad) * _y;
 		c._y = sin(alpharad) * _x + cos(alpharad) * _y;

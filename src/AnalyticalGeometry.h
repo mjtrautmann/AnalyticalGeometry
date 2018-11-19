@@ -32,7 +32,6 @@
 #ifndef GEOMETRY_H
 #define GEOMETRY_H
 
-#define PI 3.141592653589793
 
 #include <math.h>
 #include <iostream>
@@ -46,6 +45,8 @@
 
 namespace analyticalgeom
 {
+
+	constexpr double pi() { return 3.141592653589793; }
 	
 	class AnalyticalGeometry
 	{
