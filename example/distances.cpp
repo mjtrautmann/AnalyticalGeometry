@@ -55,7 +55,6 @@ int main()
 	std::cout << "The points " << p0 << ", " << p1 << " and " << p2 << " form the plane " << plane << std::endl;
 	std::cout << "The projection of " << p3 << " on the plane " << plane << " is " << analyticalgeom::AnalyticalGeometry::projection(plane, p3) << std::endl;
 	std::cout << "The distance between point " << p3 << " and plane " << plane << " is " << analyticalgeom::AnalyticalGeometry::distance(plane, p3) << std::endl;
-	
 
 	return 0;
 }
