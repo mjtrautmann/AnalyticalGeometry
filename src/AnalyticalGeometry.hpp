@@ -136,10 +136,7 @@ namespace analyticalgeom
 		double nb;
 		nb = p.n() * l.direction();
 		// check for singularity and return
-		if (std::abs(nb) < 1e-50)
-			return true;
-		else
-			return false;
+		return (std::abs(nb) < 1e-10);
 	}
 
 
