@@ -123,7 +123,7 @@ namespace analyticalgeom
 	)
 	{
 		auto ndotn = std::abs(p1.n() * p2.n());
-		return ndotn > (1 - 1e-10);
+		return ndotn > (1 - 1e-13);
 	}
 
 	inline bool AnalyticalGeometry::isParallel
@@ -134,7 +134,7 @@ namespace analyticalgeom
 	{
 		auto ndotn = std::abs(a.direction()*b.direction());
 		auto nn = a.direction().length() * b.direction().length();
-		return ndotn > (1 - 1e-10)*nn;
+		return ndotn > (1 - 1e-13)*nn;
 	}
 
 	inline bool AnalyticalGeometry::isParallel
@@ -146,7 +146,7 @@ namespace analyticalgeom
 		double nb;
 		nb = p.n() * l.direction();
 		// check for singularity and return
-		return (std::abs(nb) < 1e-10);
+		return (std::abs(nb) < 1e-13);
 	}
 
 
