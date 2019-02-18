@@ -62,7 +62,8 @@ namespace analyticalgeom
 			static double distance(const Line& a, const Coordinate& b);
 			static double distance(const Line& a, const Line& b);
 			static double distance(const Plane& a, const Coordinate& b);
-			
+
+			static bool isParallel(const Plane & p1, const Plane & p2);
 			static bool isParallel(const Plane & p, const Line & l);
 			static bool isParallel(const Line & a, const Line & b);
 			static Coordinate cut(const Plane & p, const Line & l);
