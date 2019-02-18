@@ -39,13 +39,12 @@
 #include <algorithm>
 #include <sstream>
 
-#include "Coordinate.h"
-#include "Line.h"
-#include "Plane.h"
-
 namespace analyticalgeom
 {
-
+	class Coordinate;
+	class Line;
+	class Plane;
+	
 	constexpr double pi() { return 3.141592653589793; }
 	
 	class AnalyticalGeometry
@@ -72,6 +71,10 @@ namespace analyticalgeom
 
 }
 
+
+#include "Coordinate.h"
+#include "Line.h"
+#include "Plane.h"
 #include "AnalyticalGeometry.hpp"
 
 
