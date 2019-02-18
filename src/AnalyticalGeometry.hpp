@@ -118,6 +118,16 @@ namespace analyticalgeom
 
 	inline bool AnalyticalGeometry::isParallel
 	(
+		const Plane & p1,
+		const Plane & p2
+	)
+	{
+		auto ndotn = std::abs(p1.n() * p2.n());
+		return ndotn > (1 - 1e-10);
+	}
+
+	inline bool AnalyticalGeometry::isParallel
+	(
 		const Line & a,
 		const Line & b
 	)
