@@ -68,6 +68,5 @@ int main()
 	std::cout << plane.n() * plane3.n() << std::endl;
 	std::cout << "The planes " << plane << " and " << plane3 << " are " << (analyticalgeom::AnalyticalGeometry::isParallel(plane, plane3) ? std::string("parallel") : std::string("not parallel")) << std::endl;
 
-	std::exit(0);
 	return 0;
 }

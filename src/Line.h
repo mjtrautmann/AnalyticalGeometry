@@ -41,7 +41,7 @@ namespace analyticalgeom
 		public:
 		
 			Line();
-			Line(const Coordinate& a, const Coordinate& b);
+			explicit Line(const Coordinate& a, const Coordinate& b);
 
 			std::string print() const;
 		
@@ -58,7 +58,7 @@ namespace analyticalgeom
 	};
 
 
-	std::ostream& operator<< (std::ostream& stream, const analyticalgeom::Line& l)
+	inline std::ostream& operator<< (std::ostream& stream, const analyticalgeom::Line& l)
 	{
 		stream << l.print();
 		return stream;

@@ -41,7 +41,7 @@ namespace analyticalgeom
 		public:
 		
 			Coordinate() :_x(0.), _y(0.), _z(0.) {};
-			Coordinate(const double & x, const double & y, const double & z) : _x(x), _y(y), _z(z) {};
+			explicit Coordinate(const double & x, const double & y, const double & z) : _x(x), _y(y), _z(z) {};
 
 			std::string print() const;
 			
@@ -96,7 +96,7 @@ namespace analyticalgeom
 			double _z;
 	};
 
-	std::ostream& operator<< (std::ostream& stream, const analyticalgeom::Coordinate& c)
+	inline std::ostream& operator<< (std::ostream& stream, const analyticalgeom::Coordinate& c)
 	{
 		stream << c.print();
 		return stream;
