@@ -37,7 +37,7 @@
 namespace analyticalgeom
 {
 
-	std::string Coordinate::print() const
+	inline std::string Coordinate::print() const
 	{
 		std::stringstream stream;
 		stream << '(' << _x << ',' << _y << ',' << _z << ')';

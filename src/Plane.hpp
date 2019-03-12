@@ -60,7 +60,7 @@ namespace analyticalgeom
 	}
 
 
-	std::string Plane::print() const
+	inline std::string Plane::print() const
 	{
 		std::stringstream stream;
 		stream << "(x*(" << _n.x() << ',' << _n.y() << ',' << _n.z() << ')' << '=' << _d;

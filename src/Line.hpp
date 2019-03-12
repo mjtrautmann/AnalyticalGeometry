@@ -44,7 +44,7 @@ namespace analyticalgeom
 		_direction = (b-a) / (b-a).length();
 	}
 
-	std::string Line::print() const
+	inline std::string Line::print() const
 	{
 		std::stringstream stream;
 		stream << '(' << _spawn.x() << ',' << _spawn.y() << ',' << _spawn.y() << ')';
