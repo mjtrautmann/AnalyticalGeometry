@@ -1,12 +1,6 @@
-//	
-//	author: 		Marcus Trautmann
-//	date:			16.11.2018
-//	description: 	Simple examples for the analytical geometry library
-//	
-//	
 //	MIT License
 //	
-//	Copyright (c) 2018 mjtrautmann
+//	Copyright (c) 2022 mjtrautmann
 //	
 //	Permission is hereby granted, free of charge, to any person obtaining a copy
 //	of this software and associated documentation files (the "Software"), to deal
@@ -29,24 +23,20 @@
 //
 
 
-#include "..\src\AnalyticalGeometry.h"
+#include "../src/AnalyticalGeometry.h"
 #include <iostream>
 #include <cstdlib>
-
 
 
 int main()
 {
 	std::cout << "Exmples for Analytical Geometry Library" << std::endl;
 
-
-
 	analyticalgeom::Coordinate p0(0, 1, 0);
 	analyticalgeom::Coordinate p1(2, 1, 0);
 	analyticalgeom::Coordinate p2(1, 2, 1);
-	analyticalgeom::Coordinate p3(1, 2, 1.0000001);
-
-
+	analyticalgeom::Coordinate p3(1, 2, 1.000001);
+	
 	std::cout << "The distance between " << p0 << " and " << p1 << " is " << (p1 - p0).length() << std::endl;
 	std::cout << "The distance between " << p0 << " and " << p2 << " is " << (p2-p0).length() << std::endl << std::endl;
 
@@ -65,7 +55,7 @@ int main()
 	std::cout << "The planes are " << (analyticalgeom::AnalyticalGeometry::isParallel(plane, plane2) ? std::string("parallel") : std::string("not parallel")) << std::endl;
 
 	analyticalgeom::Plane plane3(p0, p1, p3);
-	std::cout << plane.n() * plane3.n() << std::endl;
+	std::cout << acrossb(plane.n(), plane3.n()) << std::endl;
 	std::cout << "The planes " << plane << " and " << plane3 << " are " << (analyticalgeom::AnalyticalGeometry::isParallel(plane, plane3) ? std::string("parallel") : std::string("not parallel")) << std::endl;
 
 	return 0;
