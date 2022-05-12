@@ -1,9 +1,3 @@
-//	
-//	author: 		Marcus Trautmann
-//	date:			16.11.2018
-//	description: 	Plane class for analytical geometry operations
-//	
-//	
 //	MIT License
 //	
 //	Copyright (c) 2018 mjtrautmann
@@ -30,14 +24,14 @@
 #ifndef GEOMETRY_PLANE_HPP
 #define GEOMETRY_PLANE_HPP
 
-#include "Plane.h"
+#include "plane.h"
 
 namespace analyticalgeom
 {
 	
-	inline Plane::Plane() {}
+	constexpr Plane::Plane() {}
 
-	inline Plane::Plane
+	constexpr Plane::Plane
 	(
 		const Coordinate& a,
 		const Coordinate& b,
@@ -50,7 +44,7 @@ namespace analyticalgeom
 	}
 
 
-	inline Plane::Plane
+	constexpr Plane::Plane
 	(
 		const Coordinate& x,
 		const Coordinate& n
@@ -63,7 +57,7 @@ namespace analyticalgeom
 	inline std::string Plane::print() const
 	{
 		std::stringstream stream;
-		stream << "(x*(" << _n.x() << ',' << _n.y() << ',' << _n.z() << ')' << '=' << _d;
+		stream << "(x*(" << _n.x() << ',' << _n.y() << ',' << _n.z() << "))" << '=' << _d;
 		return stream.str();
 	}
 

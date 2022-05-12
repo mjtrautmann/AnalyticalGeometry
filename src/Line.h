@@ -1,12 +1,6 @@
-//	
-//	author: 		Marcus Trautmann
-//	date:			16.11.2018
-//	description: 	Line class for analytical geometry operations
-//	
-//	
 //	MIT License
 //	
-//	Copyright (c) 2018 mjtrautmann
+//	Copyright (c) 2022 mjtrautmann
 //	
 //	Permission is hereby granted, free of charge, to any person obtaining a copy
 //	of this software and associated documentation files (the "Software"), to deal
@@ -28,7 +22,7 @@
 //	
 
 // Test
-#include "AnalyticalGeometry.h"
+#include "analyticalGeometry.h"
 
 #ifndef GEOMETRY_LINE_H
 #define GEOMETRY_LINE_H
@@ -40,16 +34,16 @@ namespace analyticalgeom
 	{
 		public:
 		
-			Line();
+			constexpr Line();
 			explicit Line(const Coordinate& a, const Coordinate& b);
 
 			std::string print() const;
 		
-			const Coordinate& spawn() const			{return _spawn;}
-			const Coordinate& direction() const		{return _direction;}
+			constexpr const Coordinate& spawn() const			{return _spawn;}
+			constexpr const Coordinate& direction() const		{return _direction;}
 		
-			void setSpawn(const Coordinate& a)		{_spawn = a;}
-			void setDirection(const Coordinate& a)	{_direction = a;}
+			constexpr void setSpawn(const Coordinate& a)		{_spawn = a;}
+			constexpr void setDirection(const Coordinate& a)	{_direction = a;}
 			void setPoints(const Coordinate& a, const Coordinate& b);
 		
 		protected:

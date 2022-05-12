@@ -41,26 +41,28 @@
 
 namespace analyticalgeom
 {
+	typedef float floattype;
 	class Coordinate;
 	class Line;
 	class Plane;
 	
-	constexpr double pi() { return 3.141592653589793; }
+	constexpr floattype pi() { return 3.141592653589793; }
+	constexpr floattype epsilon() { return 1e-6; }
 	
 	class AnalyticalGeometry
 	{
 	
 		public:
-			static double angle(const Coordinate& a, const Coordinate& b);
-			static double angleDeg(const Coordinate& a, const Coordinate& b);
+			static floattype angle(const Coordinate& a, const Coordinate& b);
+			static floattype angleDeg(const Coordinate& a, const Coordinate& b);
 
 			static Coordinate projection(const Line& a, const Coordinate& b);
 			static Coordinate projection(const Plane& a, const Coordinate& b);
 
-			static double distance(const Coordinate& a, const Coordinate& b);
-			static double distance(const Line& a, const Coordinate& b);
-			static double distance(const Line& a, const Line& b);
-			static double distance(const Plane& a, const Coordinate& b);
+			static floattype distance(const Coordinate& a, const Coordinate& b);
+			static floattype distance(const Line& a, const Coordinate& b);
+			static floattype distance(const Line& a, const Line& b);
+			static floattype distance(const Plane& a, const Coordinate& b);
 
 			static bool isParallel(const Plane & p1, const Plane & p2);
 			static bool isParallel(const Plane & p, const Line & l);

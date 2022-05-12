@@ -1,9 +1,3 @@
-//	
-//	author: 		Marcus Trautmann
-//	date:			16.11.2018
-//	description: 	Coordinate class for analytical geometry operations
-//	
-//	
 //	MIT License
 //	
 //	Copyright (c) 2018 mjtrautmann
@@ -29,10 +23,10 @@
 
 
 
-#ifndef GEOMETRY_COORDINATE_HPP
-#define GEOMETRY_COORDINATE_HPP
+#ifndef COORDINATE_HPP
+#define COORDINATE_HPP
 
-#include "Coordinate.h"
+#include "coordinate.h"
 
 namespace analyticalgeom
 {
@@ -40,51 +34,51 @@ namespace analyticalgeom
 	inline std::string Coordinate::print() const
 	{
 		std::stringstream stream;
-		stream << '(' << _x << ',' << _y << ',' << _z << ')';
+		stream << '(' << m_x << ',' << m_y << ',' << m_z << ')';
 		return stream.str();
 	}
 
 
 
-	inline void Coordinate::setCoord(const double & x, const double & y, const double & z)
+	constexpr void Coordinate::setCoord(floattype x, floattype y, floattype z)
 	{
-		_x = x;
-		_y = y;
-		_z = z;
+		m_x = x;
+		m_y = y;
+		m_z = z;
 	}
 		
-	inline Coordinate Coordinate::rotateX(double alpha) const
+	inline Coordinate Coordinate::rotateX(floattype alpha) const
 	{
 		Coordinate c;
-		double alpharad = alpha * analyticalgeom::pi() / 180.;
+		floattype alpharad = alpha * analyticalgeom::pi() / 180.;
 		
-		c._x = _x;
-		c._y = cos(alpharad) * _y - sin(alpharad) * _z;
-		c._z = sin(alpharad) * _y + cos(alpharad) * _z;
+		c.m_x = m_x;
+		c.m_y = cos(alpharad) * m_y - sin(alpharad) * m_z;
+		c.m_z = sin(alpharad) * m_y + cos(alpharad) * m_z;
 		
 		return c;
 	}
 
-	inline Coordinate Coordinate::rotateY(double alpha) const
+	inline Coordinate Coordinate::rotateY(floattype alpha) const
 	{
 		Coordinate c;
-		double alpharad = alpha * analyticalgeom::pi() / 180.;
+		floattype alpharad = alpha * analyticalgeom::pi() / static_cast<floattype>(180.);
 		
-		c._x = cos(alpharad) * _x + sin(alpharad) * _z;
-		c._y = _y;
-		c._z = - sin(alpharad) * _x + cos(alpharad) * _z;
+		c.m_x = cos(alpharad) * m_x + sin(alpharad) * m_z;
+		c.m_y = m_y;
+		c.m_z = - sin(alpharad) * m_x + cos(alpharad) * m_z;
 		
 		return c;
 	}
 
-	inline Coordinate Coordinate::rotateZ(double alpha) const
+	inline Coordinate Coordinate::rotateZ(floattype alpha) const
 	{
 		Coordinate c;
-		double alpharad = alpha * analyticalgeom::pi() / 180.;
+		floattype alpharad = alpha * analyticalgeom::pi() / 180.;
 		
-		c._x = cos(alpharad) * _x - sin(alpharad) * _y;
-		c._y = sin(alpharad) * _x + cos(alpharad) * _y;
-		c._z = _z;
+		c.m_x = cos(alpharad) * m_x - sin(alpharad) * m_y;
+		c.m_y = sin(alpharad) * m_x + cos(alpharad) * m_y;
+		c.m_z = m_z;
 		
 		return c;
 	}
@@ -92,96 +86,96 @@ namespace analyticalgeom
 	//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 	// Operators
 
-	inline Coordinate &Coordinate::operator = (const Coordinate &a)
+	constexpr Coordinate &Coordinate::operator = (const Coordinate &a)
 	{
-		this->_x = a._x;
-		this->_y = a._y;
-		this->_z = a._z;
+		m_x = a.x();
+		m_y = a.y();
+		m_z = a.z();
 		
 		return *this;
 	}
 
-	inline Coordinate &Coordinate::operator = (const double a)
+	constexpr Coordinate &Coordinate::operator = (const floattype a)
 	{
-		this->_x = a;
-		this->_y = a;
-		this->_z = a;
+		m_x = a;
+		m_y = a;
+		m_z = a;
 		
 		return *this;
 	}
 
-	inline double Coordinate::operator *
+	constexpr floattype Coordinate::operator *
 	(
 		const Coordinate &b
 	) const
 	{
-		return (_x * b._x + _y * b._y + _z * b._z);
+		return (m_x * b.x() + m_y * b.y() + m_z * b.z());
 	}
 
-	inline Coordinate operator *
+	constexpr Coordinate operator *
 	(
-		const double alpha,
+		floattype alpha,
 		const Coordinate &a
 	)
 	{
 		return Coordinate(alpha * a.x(), alpha * a.y(), alpha * a.z());
 	}
 
-	inline Coordinate Coordinate::operator * 
+	constexpr Coordinate Coordinate::operator * 
 	(
-		const double & alpha
+		floattype alpha
 	) const
 	{
-		return Coordinate(alpha * _x, alpha * _y, alpha * _z);
+		return Coordinate(alpha * m_x, alpha * m_y, alpha * m_z);
 	}
 
-	inline Coordinate Coordinate::operator / 
+	constexpr Coordinate Coordinate::operator / 
 	(
-		const double & alpha
+		floattype alpha
 	) const
 	{
-		return Coordinate(_x / alpha, _y / alpha, _z / alpha);
+		return Coordinate(m_x / alpha, m_y / alpha, m_z / alpha);
 	}
 
-	inline Coordinate Coordinate::operator + 
+	constexpr Coordinate Coordinate::operator + 
 	(
 		const Coordinate &b
 	) const
 	{
-		return Coordinate(_x + b._x, _y + b._y, _z + b._z);
+		return Coordinate(m_x + b.x(), m_y + b.y(), m_z + b.z());
 	}
 
-	inline Coordinate Coordinate::operator - 
+	constexpr Coordinate Coordinate::operator - 
 	(
 		const Coordinate &b
 	) const
 	{
-		return Coordinate(_x - b._x, _y - b._y, _z - b._z);
+		return Coordinate(m_x - b.x(), m_y - b.y(), m_z - b.z());
 	}
 
-	inline Coordinate & Coordinate::operator +=
-	(
-		const Coordinate &b
-	)
-	{
-		_x += b._x;
-		_y += b._y;
-		_z += b._z;
-		return *this;
-	}
-
-	inline Coordinate & Coordinate::operator -=
+	constexpr Coordinate & Coordinate::operator +=
 	(
 		const Coordinate &b
 	)
 	{
-		_x -= b._x;
-		_y -= b._y;
-		_z -= b._z;
+		m_x += b.x();
+		m_y += b.y();
+		m_z += b.z();
 		return *this;
 	}
 
-	inline Coordinate operator +
+	constexpr Coordinate & Coordinate::operator -=
+	(
+		const Coordinate &b
+	)
+	{
+		m_x -= b.x();
+		m_y -= b.y();
+		m_z -= b.z();
+		return *this;
+	}
+
+	constexpr Coordinate operator +
 	(
 		const Coordinate &a
 	)
@@ -189,15 +183,15 @@ namespace analyticalgeom
 		return a;
 	}
 
-	inline Coordinate operator -
+	constexpr Coordinate operator -
 	(
 		const Coordinate &a
 	)
 	{
-		return Coordinate(-a._x, -a._y, -a._z);
+		return Coordinate(-a.x(), -a.y(), -a.z());
 	}
 
-	inline bool Coordinate::operator <
+	const bool Coordinate::operator <
 	(
 		const Coordinate &b
 	) const
@@ -205,7 +199,7 @@ namespace analyticalgeom
 		return (length() < b.length()) ?true:false;
 	}
 
-	inline bool Coordinate::operator >
+	const bool Coordinate::operator >
 	(
 		const Coordinate &b
 	) const
@@ -213,36 +207,35 @@ namespace analyticalgeom
 		return (length() > b.length()) ?true:false;
 	}
 
-	inline Coordinate pointwiseamulb(const Coordinate &a, const Coordinate &b)
+	constexpr floattype dot(floattype d1, floattype d2, floattype d3, const Coordinate & c)
 	{
-		Coordinate c;
-		
-		c._x = a._x * b._x;
-		c._y = a._y * b._y;
-		c._z = a._z * b._z;
-		
-		return c;
+		return d1 * c.x() + d2 * c.y() + d3 * c.z();
 	}
 
-	inline Coordinate pointwiseadivb(const Coordinate &a, const Coordinate &b)
+	constexpr Coordinate pointwiseamulb(const Coordinate &a, const Coordinate &b)
 	{
-		Coordinate c;
-		
-		c._x = a._x / b._x;
-		c._y = a._y / b._y;
-		c._z = a._z / b._z;
-		
-		return c;
+		auto x = a.x() * b.x();
+		auto y = a.y() * b.y();
+		auto z = a.z() * b.z();
+		return Coordinate(x, y, z);
 	}
 
-	inline Coordinate acrossb(const Coordinate &a, const Coordinate&b)
+	constexpr Coordinate pointwiseadivb(const Coordinate &a, const Coordinate &b)
 	{
-		Coordinate c;
-		c._x = a._y * b._z - a._z * b._y;
-		c._y = a._z * b._x - a._x * b._z;
-		c._z = a._x * b._y - a._y * b._x;
+		auto x = a.x() / b.x();
+		auto y = a.y() / b.y();
+		auto z = a.z() / b.z();
 		
-		return c;
+		return Coordinate(x, y, z);
+	}
+
+	constexpr Coordinate acrossb(const Coordinate &a, const Coordinate&b)
+	{
+		auto x = a.y() * b.z() - a.z() * b.y();
+		auto y = a.z() * b.x() - a.x() * b.z();
+		auto z = a.x() * b.y() - a.y() * b.x();
+		
+		return Coordinate(x, y, z);
 	}
 
 }
@@ -251,7 +244,7 @@ namespace analyticalgeom
 
 
 
-#endif // GEOMETRY_COORDINATE_CPP
+#endif // COORDINATE_HPP
 
 
 

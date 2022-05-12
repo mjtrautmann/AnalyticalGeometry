@@ -1,9 +1,3 @@
-//	
-//	author: 		Marcus Trautmann
-//	date:			16.11.2018
-//	description: 	Analytical geometry class for analytical geometry operations
-//	
-//	
 //	MIT License
 //	
 //	Copyright (c) 2018 mjtrautmann
@@ -28,34 +22,34 @@
 //	
 
 
-#ifndef ALGEBRA_HCPP
-#define ALGEBRA_HCPP
+#ifndef ALGEBRA_HPP
+#define ALGEBRA_HPP
 
-#include "AnalyticalGeometry.h"
+#include "analyticalGeometry.h"
 #include <cmath>
 
 namespace analyticalgeom
 {
 
-	inline double AnalyticalGeometry::angle
+	inline floattype AnalyticalGeometry::angle
 	(
 		const Coordinate & a,
 		const Coordinate & b
 	)
 	{
-		return std::acos(a*b / (a.length()*b.length() + 1e-50));
+		return std::acos(a*b / (a.length()*b.length() + static_cast<floattype>(1e-50)));
 	}
 
-	inline double AnalyticalGeometry::angleDeg
+	inline floattype AnalyticalGeometry::angleDeg
 	(
 		const Coordinate & a,
 		const Coordinate & b
 	)
 	{
-		return std::acos(a*b / (a.length()*b.length() + 1e-50)) * 180 / 3.14159265359;
+		return std::acos(a*b / (a.length()*b.length() + static_cast<floattype>(1e-50))) * static_cast<floattype>(180) / static_cast<floattype>(3.14159265359);
 	}
 
-	inline double AnalyticalGeometry::distance
+	inline floattype AnalyticalGeometry::distance
 	(
 		const Plane& a,
 		const Coordinate& b
@@ -83,7 +77,7 @@ namespace analyticalgeom
 	}
 
 
-	inline double AnalyticalGeometry::distance
+	inline floattype AnalyticalGeometry::distance
 	(
 		const Coordinate& a,
 		const Coordinate& b
@@ -93,7 +87,7 @@ namespace analyticalgeom
 	}
 
 
-	inline double AnalyticalGeometry::distance
+	inline floattype AnalyticalGeometry::distance
 	(
 		const Line& a,
 		const Coordinate& b
@@ -103,7 +97,7 @@ namespace analyticalgeom
 	}
 
 
-	inline double AnalyticalGeometry::distance
+	inline floattype AnalyticalGeometry::distance
 	(
 		const Line& a,
 		const Line& b
@@ -122,8 +116,8 @@ namespace analyticalgeom
 		const Plane & p2
 	)
 	{
-		auto ndotn = std::abs(p1.n() * p2.n());
-		return ndotn > (1 - 1e-13);
+		auto axb = acrossb(p1.n(), p2.n()).length();
+		return (std::abs(axb) < analyticalgeom::epsilon());
 	}
 
 	inline bool AnalyticalGeometry::isParallel
@@ -132,9 +126,8 @@ namespace analyticalgeom
 		const Line & b
 	)
 	{
-		auto ndotn = std::abs(a.direction()*b.direction());
-		auto nn = a.direction().length() * b.direction().length();
-		return ndotn > (1 - 1e-13)*nn;
+		auto axb = acrossb(a.direction(), b.direction()).length();
+		return (std::abs(axb) < analyticalgeom::epsilon());
 	}
 
 	inline bool AnalyticalGeometry::isParallel
@@ -143,10 +136,10 @@ namespace analyticalgeom
 		const Line & l
 	)
 	{
-		double nb;
+		floattype nb;
 		nb = p.n() * l.direction();
 		// check for singularity and return
-		return (std::abs(nb) < 1e-13);
+		return (std::abs(nb) < analyticalgeom::epsilon());
 	}
 
 
@@ -157,10 +150,10 @@ namespace analyticalgeom
 		const Line & l
 	)
 	{
-		double na, nb, t;
+		floattype na, nb, t;
 		nb = p.n() * l.direction();
 		// check for singularity
-		if (nb == 0) return Coordinate(0,0,0);
+		if (std::abs(nb) < analyticalgeom::epsilon()) return Coordinate(0,0,0);
 		na = p.n() * l.spawn();
 		t = (p.d() - na) / nb;
 		
@@ -169,7 +162,7 @@ namespace analyticalgeom
 
 }
 
-#endif // GEOMETRY_CPP
+#endif // ALGEBRA_HPP
 
 
 

@@ -1,9 +1,3 @@
-//	
-//	author: 		Marcus Trautmann
-//	date:			16.11.2018
-//	description: 	Line class for analytical geometry operations
-//	
-//	
 //	MIT License
 //	
 //	Copyright (c) 2018 mjtrautmann
@@ -28,20 +22,19 @@
 //	
 
 
-#ifndef GEOMETRY_LINE_HPP
-#define GEOMETRY_LINE_HPP
+#ifndef LINE_HPP
+#define LINE_HPP
 
-#include "Line.h"
+#include "line.h"
 
 namespace analyticalgeom
 {
 
-	inline Line::Line(){}
+	constexpr Line::Line(){}
 
-	inline Line::Line(const Coordinate& a, const Coordinate& b)
+	Line::Line(const Coordinate& a, const Coordinate& b)
 	{
-		_spawn = a;
-		_direction = (b-a) / (b-a).length();
+		this->setPoints(a,b);
 	}
 
 	inline std::string Line::print() const
@@ -53,7 +46,7 @@ namespace analyticalgeom
 		return stream.str();
 	}
 
-	inline void Line::setPoints(const Coordinate& a, const Coordinate& b)
+	void Line::setPoints(const Coordinate& a, const Coordinate& b)
 	{
 		_spawn = a;
 		_direction = (b-a) / (b-a).length();
@@ -62,12 +55,7 @@ namespace analyticalgeom
 }
 
 
-#endif // GEOMETRY_LINE_CPP
-
-
-
-
-
+#endif // LINE_HPP
 
 
 

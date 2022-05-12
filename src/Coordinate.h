@@ -1,12 +1,6 @@
-//	
-//	author: 		Marcus Trautmann
-//	date:			16.11.2018
-//	description: 	Coordinate class for analytical geometry operations
-//	
-//	
 //	MIT License
 //	
-//	Copyright (c) 2018 mjtrautmann
+//	Copyright (c) 2022 mjtrautmann
 //	
 //	Permission is hereby granted, free of charge, to any person obtaining a copy
 //	of this software and associated documentation files (the "Software"), to deal
@@ -30,7 +24,7 @@
 #ifndef GEOMETRY_COORDINATE_H
 #define GEOMETRY_COORDINATE_H
 
-#include "AnalyticalGeometry.h"
+#include "analyticalGeometry.h"
 
 
 namespace analyticalgeom
@@ -40,60 +34,52 @@ namespace analyticalgeom
 	{
 		public:
 		
-			Coordinate() :_x(0.), _y(0.), _z(0.) {};
-			explicit Coordinate(const double & x, const double & y, const double & z) : _x(x), _y(y), _z(z) {};
+			constexpr Coordinate() :m_x(0.), m_y(0.), m_z(0.) {};
+			constexpr explicit Coordinate(floattype x, floattype y, floattype z) : m_x(x), m_y(y), m_z(z) {};
 
 			std::string print() const;
 			
+			constexpr auto & x() const			{return m_x;}
+			constexpr auto & y() const			{return m_y;}
+			constexpr auto & z() const			{return m_z;}
+			const auto length() const			{return std::sqrt(m_x*m_x + m_y*m_y + m_z*m_z);}
+			const auto ex() const				{return m_x / std::max(length(), static_cast<floattype>(1e-50));}
+			const auto ey() const				{return m_y / std::max(length(), static_cast<floattype>(1e-50));}
+			const auto ez() const				{return m_z / std::max(length(), static_cast<floattype>(1e-50));}
 			
-			const auto & x() const								{return _x;}
-			const auto & y() const								{return _y;}
-			const auto & z() const								{return _z;}
-			auto ex() const										{return _x / std::max(length(), 1e-50);}
-			auto ey() const										{return _y / std::max(length(), 1e-50);}
-			auto ez() const										{return _z / std::max(length(), 1e-50);}
-			double length() const								{return std::sqrt(_x*_x + _y*_y + _z*_z);}
+			constexpr void setx(floattype x)			{m_x = x;}
+			constexpr void sety(floattype y)			{m_y = y;}
+			constexpr void setz(floattype z)			{m_z = z;}
+			constexpr void setCoord(floattype x, floattype y, floattype z);
 			
-			void setCoord(const double & x, const double & y, const double & z);
-			void setx(const double & x)							{_x = x;}
-			void sety(const double & y)							{_y = y;}
-			void setz(const double & z)							{_z = z;}
-			
-			Coordinate rotateX(double alpha) const;
-			Coordinate rotateY(double alpha) const;
-			Coordinate rotateZ(double alpha) const;
+			Coordinate rotateX(floattype alpha) const;
+			Coordinate rotateY(floattype alpha) const;
+			Coordinate rotateZ(floattype alpha) const;
 			
 			
-			Coordinate & operator = (const Coordinate &a);
-			Coordinate & operator = (const double a);
+			constexpr Coordinate & operator = (const Coordinate &a);
+			constexpr Coordinate & operator = (const floattype a);
 			
-			double operator * (const Coordinate &b) const;
-			Coordinate friend operator * (const double alpha, const Coordinate &a);
-			Coordinate operator * (const double & alpha) const;
-			Coordinate operator / (const double & alpha) const;
+			constexpr floattype operator * (const Coordinate &b) const;
+			constexpr Coordinate friend operator * (floattype alpha, const Coordinate &a);
+			constexpr Coordinate operator * (floattype alpha) const;
+			constexpr Coordinate operator / (floattype alpha) const;
 			
-			Coordinate operator + (const Coordinate &b) const;
-			Coordinate operator - (const Coordinate &b) const;
-			Coordinate friend operator + (const Coordinate &a);
-			Coordinate friend operator - (const Coordinate &a);
-			Coordinate & operator += (const Coordinate& b);
-			Coordinate & operator -= (const Coordinate& b);
+			constexpr Coordinate operator + (const Coordinate &b) const;
+			constexpr Coordinate operator - (const Coordinate &b) const;
+			constexpr Coordinate friend operator + (const Coordinate &a);
+			constexpr Coordinate friend operator - (const Coordinate &a);
+			constexpr Coordinate & operator += (const Coordinate& b);
+			constexpr Coordinate & operator -= (const Coordinate& b);
 			
-			double friend dot(const double & d1, const double & d2, const double & d3, const Coordinate & c) {return d1 * c._x + d2 * c._y + d3 * c._z;}
-			
-			bool operator < (const Coordinate &b) const;
-			bool operator > (const Coordinate &b) const;
-			
-			Coordinate friend pointwiseamulb(const Coordinate &a, const Coordinate &b);
-			Coordinate friend pointwiseadivb(const Coordinate &a, const Coordinate &b);
-			Coordinate friend acrossb(const Coordinate &a, const Coordinate&b);
-			
+			const bool operator < (const Coordinate &b) const;
+			const bool operator > (const Coordinate &b) const;			
 		
 		private:
 
-			double _x;
-			double _y;
-			double _z;
+			floattype m_x;
+			floattype m_y;
+			floattype m_z;
 	};
 
 	inline std::ostream& operator<< (std::ostream& stream, const analyticalgeom::Coordinate& c)
