@@ -39,9 +39,9 @@ namespace analyticalgeom
 	inline std::string Line2D::print() const
 	{
 		std::stringstream stream;
-		stream << '(' << _spawn.x() << ',' << _spawn.y() << ',' << _spawn.y() << ')';
+		stream << '(' << _spawn.x() << ',' << _spawn.y() << ')';
 		stream << "+t";
-		stream << '(' << _direction.x() << ',' << _direction.y() << ',' << _direction.y() << ')';
+		stream << '(' << _direction.x() << ',' << _direction.y() << ')';
 		return stream.str();
 	}
 

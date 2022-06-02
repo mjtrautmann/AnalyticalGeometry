@@ -22,8 +22,7 @@
 //	
 
 
-#ifndef ALGEBRA_HPP
-#define ALGEBRA_HPP
+#pragma once
 
 #include "analyticalGeometry.h"
 #include <cmath>
@@ -142,8 +141,6 @@ namespace analyticalgeom
 		return (std::abs(nb) < analyticalgeom::epsilon());
 	}
 
-
-
 	inline Coordinate AnalyticalGeometry::cut
 	(
 		const Plane & p,
@@ -160,9 +157,98 @@ namespace analyticalgeom
 		return (l.spawn() + t * l.direction());
 	}
 
+
+	
+
+
+	
+	inline floattype AnalyticalGeometry::angle
+	(
+		const Coordinate2D & a,
+		const Coordinate2D & b
+	)
+	{
+		return std::acos(a*b / (a.length()*b.length() + static_cast<floattype>(1e-50)));
+	}
+
+	inline floattype AnalyticalGeometry::angleDeg
+	(
+		const Coordinate2D & a,
+		const Coordinate2D & b
+	)
+	{
+		return std::acos(a*b / (a.length()*b.length() + static_cast<floattype>(1e-50))) * static_cast<floattype>(180) / static_cast<floattype>(3.14159265359);
+	}
+
+	inline Coordinate2D AnalyticalGeometry::projection
+	(
+		const Line2D& a,
+		const Coordinate2D& b
+	)
+	{
+		Coordinate2D rotatedDirection(-a.direction().y(), a.direction().x());
+		Line2D bLine(b, b+rotatedDirection);
+		return AnalyticalGeometry::cut(bLine, a);
+	}
+
+
+	inline floattype AnalyticalGeometry::distance
+	(
+		const Coordinate2D& a,
+		const Coordinate2D& b
+	)
+	{
+		return (a - b).length();
+	}
+
+
+	inline floattype AnalyticalGeometry::distance
+	(
+		const Line2D& a,
+		const Coordinate2D& b
+	)
+	{
+		return (AnalyticalGeometry::projection(a, b) - b).length();
+	}
+
+
+	inline floattype AnalyticalGeometry::distance
+	(
+		const Line2D& a,
+		const Line2D& b
+	)
+	{
+		if (AnalyticalGeometry::isParallel(a, b))
+			return AnalyticalGeometry::distance(a, b.spawn());
+		return 0;
+	}
+
+
+	inline bool AnalyticalGeometry::isParallel
+	(
+		const Line2D & a,
+		const Line2D & b
+	)
+	{
+		auto axb = acrossb(a.direction(), b.direction());
+		return (std::abs(axb) < analyticalgeom::epsilon());
+	}
+
+	inline Coordinate2D AnalyticalGeometry::cut
+	(
+		const Line2D & a,
+		const Line2D & b
+	)
+	{
+		floattype t = ((b.spawn().y()-a.spawn().y())*a.direction().x() - (b.spawn().x()-a.spawn().x())*a.direction().y())
+					 /(b.direction().x()*a.direction().y() - b.direction().y()*a.direction().x());
+		
+		return a.spawn() + t*a.direction();
+	}
+
 }
 
-#endif // ALGEBRA_HPP
+
 
 
 

@@ -50,7 +50,7 @@ namespace analyticalgeom
 	inline Coordinate Coordinate::rotateX(floattype alpha) const
 	{
 		Coordinate c;
-		floattype alpharad = alpha * analyticalgeom::pi() / 180.;
+		floattype alpharad = alpha * analyticalgeom::pi() / static_cast<floattype>(180.);
 		
 		c.m_x = m_x;
 		c.m_y = cos(alpharad) * m_y - sin(alpharad) * m_z;
@@ -74,7 +74,7 @@ namespace analyticalgeom
 	inline Coordinate Coordinate::rotateZ(floattype alpha) const
 	{
 		Coordinate c;
-		floattype alpharad = alpha * analyticalgeom::pi() / 180.;
+		floattype alpharad = alpha * analyticalgeom::pi() / static_cast<floattype>(180.);
 		
 		c.m_x = cos(alpharad) * m_x - sin(alpharad) * m_y;
 		c.m_y = sin(alpharad) * m_x + cos(alpharad) * m_y;
@@ -191,20 +191,14 @@ namespace analyticalgeom
 		return Coordinate(-a.x(), -a.y(), -a.z());
 	}
 
-	const bool Coordinate::operator <
+	inline bool Coordinate::operator ==
 	(
 		const Coordinate &b
-	) const
+	)
 	{
-		return (length() < b.length()) ?true:false;
-	}
-
-	const bool Coordinate::operator >
-	(
-		const Coordinate &b
-	) const
-	{
-		return (length() > b.length()) ?true:false;
+		return std::abs(this->x()-b.x()) < analyticalgeom::epsilon()
+			&& std::abs(this->y()-b.y()) < analyticalgeom::epsilon()
+			&& std::abs(this->z()-b.z()) < analyticalgeom::epsilon();
 	}
 
 	constexpr floattype dot(floattype d1, floattype d2, floattype d3, const Coordinate & c)

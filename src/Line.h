@@ -21,11 +21,10 @@
 //	SOFTWARE.
 //	
 
-// Test
+#pragma once
+
 #include "analyticalGeometry.h"
 
-#ifndef GEOMETRY_LINE_H
-#define GEOMETRY_LINE_H
 
 namespace analyticalgeom
 {
@@ -62,8 +61,6 @@ namespace analyticalgeom
 
 
 #include "Line.hpp"
-
-#endif // GEOMETRY_LINE_H
 
 
 

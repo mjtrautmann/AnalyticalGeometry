@@ -27,11 +27,7 @@
 //	SOFTWARE.
 //	
 
-
-
-#ifndef GEOMETRY_H
-#define GEOMETRY_H
-
+#pragma once
 
 #include <math.h>
 #include <iostream>
@@ -45,9 +41,11 @@ namespace analyticalgeom
 	class Coordinate;
 	class Line;
 	class Plane;
+	class Coordinate2D;
+	class Line2D;
 	
-	constexpr floattype pi() { return 3.141592653589793; }
-	constexpr floattype epsilon() { return 1e-6; }
+	constexpr floattype pi() { return static_cast<floattype>(3.141592653589793); }
+	constexpr floattype epsilon() { return static_cast<floattype>(1e-6); }
 	
 	class AnalyticalGeometry
 	{
@@ -68,6 +66,20 @@ namespace analyticalgeom
 			static bool isParallel(const Plane & p, const Line & l);
 			static bool isParallel(const Line & a, const Line & b);
 			static Coordinate cut(const Plane & p, const Line & l);
+			
+
+			static floattype angle(const Coordinate2D& a, const Coordinate2D& b);
+			static floattype angleDeg(const Coordinate2D& a, const Coordinate2D& b);
+
+			static Coordinate2D projection(const Line2D& a, const Coordinate2D& b);
+
+			static floattype distance(const Coordinate2D& a, const Coordinate2D& b);
+			static floattype distance(const Line2D& a, const Coordinate2D& b);
+			static floattype distance(const Line2D& a, const Line2D& b);
+			static floattype distance(const Plane& a, const Coordinate2D& b);
+
+			static bool isParallel(const Line2D & a, const Line2D & b);
+			static Coordinate2D cut(const Line2D & p, const Line2D & l);
 
 	};
 
@@ -77,9 +89,10 @@ namespace analyticalgeom
 #include "Coordinate.h"
 #include "Line.h"
 #include "Plane.h"
+#include "Coordinate2D.h"
+#include "Line2D.h"
 #include "AnalyticalGeometry.hpp"
 
 
-#endif // GEOMETRY_H
 
 

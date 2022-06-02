@@ -33,7 +33,7 @@ namespace analyticalgeom
 	inline std::string Coordinate2D::print() const
 	{
 		std::stringstream stream;
-		stream << '(' << m_x << ',' << m_y << ',' << ')';
+		stream << '(' << m_x << ',' << m_y << ')';
 		return stream.str();
 	}
 
@@ -150,6 +150,15 @@ namespace analyticalgeom
 		return Coordinate2D(-a.x(), -a.y());
 	}
 
+	inline bool Coordinate2D::operator ==
+	(
+		const Coordinate2D &b
+	)
+	{
+		return std::abs(this->x()-b.x()) < analyticalgeom::epsilon()
+			&& std::abs(this->y()-b.y()) < analyticalgeom::epsilon();
+	}
+
 	constexpr floattype dot(floattype d1, floattype d2, const Coordinate2D & c)
 	{
 		return d1 * c.x() + d2 * c.y();
@@ -168,6 +177,12 @@ namespace analyticalgeom
 		auto y = a.y() / b.y();
 		
 		return Coordinate2D(x, y);
+	}
+
+	constexpr floattype acrossb(const Coordinate2D &a, const Coordinate2D&b)
+	{
+		auto z = a.x() * b.y() - a.y() * b.x();
+		return z;
 	}
 }
 

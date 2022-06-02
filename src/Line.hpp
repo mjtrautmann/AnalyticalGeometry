@@ -46,8 +46,7 @@ namespace analyticalgeom
 		return stream.str();
 	}
 
-	inline 
-    void Line::setPoints(const Coordinate& a, const Coordinate& b)
+	inline void Line::setPoints(const Coordinate& a, const Coordinate& b)
 	{
 		_spawn = a;
 		_direction = (b-a) / (b-a).length();

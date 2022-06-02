@@ -21,8 +21,7 @@
 //	SOFTWARE.
 //	
 
-#ifndef GEOMETRY_COORDINATE_H
-#define GEOMETRY_COORDINATE_H
+#pragma once
 
 #include "analyticalGeometry.h"
 
@@ -34,7 +33,7 @@ namespace analyticalgeom
 	{
 		public:
 		
-			constexpr Coordinate() :m_x(0.), m_y(0.), m_z(0.) {};
+			constexpr Coordinate() :m_x(0), m_y(0), m_z(0) {};
 			constexpr explicit Coordinate(floattype x, floattype y, floattype z) : m_x(x), m_y(y), m_z(z) {};
 
 			std::string print() const;
@@ -67,13 +66,12 @@ namespace analyticalgeom
 			
 			constexpr Coordinate operator + (const Coordinate &b) const;
 			constexpr Coordinate operator - (const Coordinate &b) const;
-			constexpr Coordinate friend operator + (const Coordinate &a);
-			constexpr Coordinate friend operator - (const Coordinate &a);
 			constexpr Coordinate & operator += (const Coordinate& b);
 			constexpr Coordinate & operator -= (const Coordinate& b);
-			
-			const bool operator < (const Coordinate &b) const;
-			const bool operator > (const Coordinate &b) const;			
+			constexpr Coordinate friend operator + (const Coordinate &a);
+			constexpr Coordinate friend operator - (const Coordinate &a);
+
+			inline bool operator==(const Coordinate& b);
 		
 		private:
 
@@ -90,5 +88,3 @@ namespace analyticalgeom
 }
 
 #include "Coordinate.hpp"
-
-#endif // GEOMETRY_COORDINATE_H

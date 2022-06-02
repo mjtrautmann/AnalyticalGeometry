@@ -21,12 +21,9 @@
 //	SOFTWARE.
 //	
 
-
+#pragma once
 
 #include "analyticalGeometry.h"
-
-#ifndef GEOMETRY_PLANE_H
-#define GEOMETRY_PLANE_H
 
 namespace analyticalgeom
 {
@@ -63,9 +60,6 @@ namespace analyticalgeom
 
 
 #include "Plane.hpp"
-
-#endif // GEOMETRY_PLANE_H
-
 
 
 

@@ -58,10 +58,12 @@ namespace analyticalgeom
 			
 			constexpr Coordinate2D operator + (const Coordinate2D &b) const;
 			constexpr Coordinate2D operator - (const Coordinate2D &b) const;
+			constexpr Coordinate2D & operator += (const Coordinate2D& b);
+			constexpr Coordinate2D & operator -= (const Coordinate2D& b);
 			constexpr Coordinate2D friend operator + (const Coordinate2D &a);
 			constexpr Coordinate2D friend operator - (const Coordinate2D &a);
-			constexpr Coordinate2D & operator += (const Coordinate2D& b);
-			constexpr Coordinate2D & operator -= (const Coordinate2D& b);			
+
+			inline bool operator==(const Coordinate2D& b);			
 		
 		private:
 
